@@ -22,7 +22,7 @@
                     INSERT INTO recipes (name,preparation,ingredient)
                     VALUES ('${param.name}', '${param.preparation}','${param.ingredient}')
                 </sql:update>
-                    
+
             </c:when>
         </c:choose>
 
@@ -31,39 +31,47 @@
         </sql:query>
         <c:forEach var="recipe" items="${result.rows}">
             <table>
-                <tr><td><h3><c:out value="${recipe.name}"/></h3></td></tr>
-                <tr><td><c:out value="${recipe.ingredient}"/></td></tr>
-                <tr><td><c:out value="${recipe.preparation}"/></td></tr>
+                <form method="POST" action="recipes.jsp">
+                <tr><td><h3><input type="submit" name="full_recipe" value="${recipe.name}"></h3></td></tr>
+                </form>
+                <c:choose>
+                    <c:when test="${param.full_recipe == recipe.name}">  
+                        <tr><td><c:out value="${recipe.ingredient}"/></td></tr>
+                        <tr><td><c:out value="${recipe.preparation}"/></td></tr>
+                    </c:when>
+                </c:choose>
+                
+                
             </table> 
         </c:forEach>
-    <br><br>
-    <c:choose>
-        <c:when test="${param.new_recipe == null}">  
-            <form action="newrecipe.jsp" method="POST">
-                <input type="submit" name="new_recipe" value="New recipe">
-            </form>        
-        </c:when>
-    </c:choose>        
+        <br><br>
+        <c:choose>
+            <c:when test="${param.new_recipe == null}">  
+                <form action="newrecipe.jsp" method="POST">
+                    <input type="submit" name="new_recipe" value="New recipe">
+                </form>        
+            </c:when>
+        </c:choose>        
 
-    <c:choose>
-        <c:when test="${param.new_recipe != null}">
-            <form action="recipes.jsp" id="recipe" method="POST">
-                <table>
-                    <tr>
-                        <td>Recipe name</td><tr><td><input type="text" size="53" name="name" required></td></tr><br>
-                    </tr>
-                    <tr>
-                        <td>Ingredients</td><tr><td><textarea name="ingredient" rows="4" cols="50" form="recipe"></textarea></td></tr><br>
-                    </tr>
-                    <tr>
-                        <td>Preparation</td><tr><td><textarea name="preparation" rows="10" cols="50" form="recipe"></textarea></td></tr><br>
-                    </tr>
-                    <tr>
-                        <td><input type="submit" name="add_recipe" value="Add recipe"></td>
-                    </tr>
-                </table>
-            </form>
-        </c:when>
-    </c:choose>
-</body>
+        <c:choose>
+            <c:when test="${param.new_recipe != null}">
+                <form action="recipes.jsp" id="recipe" method="POST">
+                    <table>
+                        <tr>
+                            <td>Recipe name</td><tr><td><input type="text" size="53" name="name" required></td></tr><br>
+                        </tr>
+                        <tr>
+                            <td>Ingredients</td><tr><td><textarea name="ingredient" rows="4" cols="50" form="recipe"></textarea></td></tr><br>
+                        </tr>
+                        <tr>
+                            <td>Preparation</td><tr><td><textarea name="preparation" rows="10" cols="50" form="recipe"></textarea></td></tr><br>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" name="add_recipe" value="Add recipe"></td>
+                        </tr>
+                    </table>
+                </form>
+            </c:when>
+        </c:choose>
+    </body>
 </html>
