@@ -40,38 +40,17 @@
                         <tr><td><c:out value="${recipe.preparation}"/></td></tr>
                     </c:when>
                 </c:choose>
-                
-                
+                                
             </table> 
         </c:forEach>
         <br><br>
         <c:choose>
             <c:when test="${param.new_recipe == null}">  
                 <form action="newrecipe.jsp" method="POST">
-                    <input type="submit" name="new_recipe" value="New recipe">
+                    <input type="submit" name="new_recipe" value="&#10010; Recipe">
                 </form>        
             </c:when>
         </c:choose>        
 
-        <c:choose>
-            <c:when test="${param.new_recipe != null}">
-                <form action="recipes.jsp" id="recipe" method="POST">
-                    <table>
-                        <tr>
-                            <td>Recipe name</td><tr><td><input type="text" size="53" name="name" required></td></tr><br>
-                        </tr>
-                        <tr>
-                            <td>Ingredients</td><tr><td><textarea name="ingredient" rows="4" cols="50" form="recipe"></textarea></td></tr><br>
-                        </tr>
-                        <tr>
-                            <td>Preparation</td><tr><td><textarea name="preparation" rows="10" cols="50" form="recipe"></textarea></td></tr><br>
-                        </tr>
-                        <tr>
-                            <td><input type="submit" name="add_recipe" value="Add recipe"></td>
-                        </tr>
-                    </table>
-                </form>
-            </c:when>
-        </c:choose>
     </body>
 </html>
