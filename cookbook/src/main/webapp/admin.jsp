@@ -41,7 +41,7 @@
                         <c:otherwise>
                             <sql:update var="result" dataSource="${cookbook}">
                                 INSERT INTO users (name,email,password,authority)
-                                VALUES ('${param.name}', '${param.email}','${param.password}',${param.authority})
+                                VALUES ('${param.name}', '${param.email}','${param.password}','${param.authority}')
                         </sql:update>
                         </c:otherwise>
                     </c:choose>
@@ -50,6 +50,7 @@
             <c:choose>
                 <c:when test="${param.delete_user != null}">  
                     <sql:update var="result" dataSource="${cookbook}">
+                        
                         <%-- Delete  based on email, because email is a unique value--%>
                         DELETE FROM users WHERE email = '${param.email}'
                     </sql:update>        
