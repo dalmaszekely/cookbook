@@ -25,22 +25,33 @@
 
             </c:when>
         </c:choose>
+        
+        <c:choose>
+            <c:when test="${param.delete_recipe != null}">  
+                <sql:update var="result" dataSource="${cookbook}">
+                        DELETE FROM recipes WHERE id = <%= Integer.parseInt(request.getParameter("delete_id"))%>
+                    </sql:update>
+
+            </c:when>
+        </c:choose>
 
         <sql:query var="result" dataSource="${cookbook}">
             SELECT * FROM recipes
         </sql:query>
         <c:forEach var="recipe" items="${result.rows}">
             <table>
-                <form method="POST" action="recipes.jsp">
-                <tr><td><h3><input type="submit" name="full_recipe" value="${recipe.name}"></h3></td></tr>
-                </form>
+                    <tr>
+                        <td><form method="POST" action="recipes.jsp"><input type="submit" name="full_recipe" value="${recipe.name}"></form></td>
+                        <td><form method="POST" action="recipes.jsp"><input type="hidden" name="delete_id" value="${recipe.id}"><input type="submit" name="delete_recipe" value="Delete"></td>
+                    </tr>
+                
                 <c:choose>
                     <c:when test="${param.full_recipe == recipe.name}">  
                         <tr><td><c:out value="${recipe.ingredient}"/></td></tr>
                         <tr><td><c:out value="${recipe.preparation}"/></td></tr>
                     </c:when>
                 </c:choose>
-                                
+
             </table> 
         </c:forEach>
         <br><br>
