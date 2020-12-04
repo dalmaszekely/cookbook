@@ -32,18 +32,10 @@
             <input type="text" name="searched" value='${param.searched}'>
             <input type="submit" name="search_recipe" value="Search">
         </form>
-        <c:choose>
-            <c:when test="${param.search_recipe != null}">  
-                <sql:query var="result" dataSource="${cookbook}">
-                    SELECT * FROM recipes where upper(name)LIKE'%${fn:toUpperCase(param.searched)}%'
-                </sql:query>
-            </c:when>
-            <c:otherwise>
-                <sql:query var="result" dataSource="${cookbook}">
-                    SELECT * FROM recipes
-                </sql:query>
-            </c:otherwise>
-        </c:choose>
+
+        <sql:query var="result" dataSource="${cookbook}">
+            SELECT * FROM recipes where upper(name)LIKE'%${fn:toUpperCase(param.searched)}%'
+        </sql:query>
 
         <c:forEach var="recipe" items="${result.rows}">
             <table>
