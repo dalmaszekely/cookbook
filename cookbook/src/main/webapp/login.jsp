@@ -38,9 +38,12 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" name="login" value="Send"> </td>
+                    <td><input type="submit" name="login" value="Sign in"> </td>
                 </tr>
             </table>
+        </form>
+        <form action="registration.jsp" method="POST">
+            <input type="submit" name="registration" value="Create a new account">
         </form>
         <c:if test="${empty cookbook}">
             <p>Check the database connection!</p>

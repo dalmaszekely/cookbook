@@ -46,6 +46,7 @@
                 </tr>
             </table>
         </form>
+            <h5>If you already have an account, please <a href="login.jsp">sign in</a></h5>
         <c:if test="${empty cookbook}">
             <p>Check the database connection!</p>
         </c:if>
