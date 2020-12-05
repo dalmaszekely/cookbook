@@ -46,10 +46,7 @@
       </tr>
       </table>
     </form>
-    <c:if test="${!empty param.errorMsg}">
-            <hr>
-            ${param.errorMsg}
-        </c:if>
+
         <c:if test="${empty felhasznalok}">
             <p>Check the database connection!</p>
         </c:if>
