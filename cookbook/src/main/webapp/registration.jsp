@@ -14,41 +14,46 @@
     response.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
+
+<link rel="shortcut icon" type="image/png" href="img/favicon.png">
+<link rel="stylesheet" href="css/all.css">
+<link rel="stylesheet" href="css/login.css">
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registration page</title>
     </head>
     <body>
-        <h1 align=center>Welcome to CookBook!</h1>
+        <p class="title">Welcome to CookBook!</p>
         <c:if test="${! empty param.errorMsg}" >
             <font color="red"> <b> ${param.errorMsg}</b></font>
         </c:if>
         <br> <br>
-        <h4> Create your own account! </h4>
+        <h4 class="text"> Create your own account! </h4>
         <form action="checkregistration.jsp" method="post">
             <table>
                 <tr>
-                    <td>Username: </td> 
-                    <td> <input type="text" name="name" value="" size="20" required> </td>
+                    <td class="text">Username: </td> 
+                    <td> <input type="text" name="name" value="" size="20" required class="textbox"> </td>
                 </tr>
                 <tr>
-                    <td>Email: </td> 
-                    <td> <input type="email" name="email" value="" size="20" required> </td>
+                    <td class="text">Email: </td> 
+                    <td> <input type="email" name="email" value="" size="20" required class="textbox"> </td>
                 </tr>
                 <tr>
-                    <td> Password: </td> 
-                    <td> <input type="password" name="password" value="" size="20" required> </td>
+                    <td class="text"> Password: </td> 
+                    <td> <input type="password" name="password" value="" size="20" required class="textbox"> </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" name="registration" value="Registration"> </td>
+                    <td><input type="submit" name="registration" value="Registration" class="button"> </td>
                 </tr>
             </table>
         </form>
-            <h5>If you already have an account, please <a href="login.jsp">sign in</a></h5>
+            <h5 class="text">If you already have an account, please <a href="login.jsp">sign in</a></h5>
         <c:if test="${empty cookbook}">
-            <p>Check the database connection!</p>
+            <p class="text">Check the database connection!</p>
         </c:if>
     </body>
 </html>
