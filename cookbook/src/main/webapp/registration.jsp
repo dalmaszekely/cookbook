@@ -30,7 +30,7 @@
             <table>
                 <tr>
                     <td>Username: </td> 
-                    <td> <input type="text" name="username" value="" size="20" required> </td>
+                    <td> <input type="text" name="name" value="" size="20" required> </td>
                 </tr>
                 <tr>
                     <td>Email: </td> 

@@ -25,7 +25,7 @@
                 <c:choose> 
                     <c:when test="${result.rowCount == 1}">
                         <jsp:forward page="registration.jsp">
-                            <jsp:param name="errorMsg" value="The username and/or the password is empty."/>
+                            <jsp:param name="errorMsg" value="This email address is already taken"/>
                         </jsp:forward>
                     </c:when>
                     <c:otherwise>

@@ -54,7 +54,7 @@
 
 
             <sql:query var="result" dataSource="${cookbook}">
-                SELECT * FROM users
+                SELECT * FROM users ORDER BY id
             </sql:query>
             <c:forEach var="user" items="${result.rows}">
                 <tr>
