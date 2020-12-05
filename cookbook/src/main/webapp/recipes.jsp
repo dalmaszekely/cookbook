@@ -18,7 +18,6 @@
     </head>
 
     <body>
-        <%= session.getAttribute("authority")%>
         <%if(session.getAttribute("userid")!= null){%>
         <c:choose>
             <c:when test="${param.delete_recipe != null}">  
