@@ -11,19 +11,31 @@
                    scope="session"/>
 
 <c:choose>
-    <c:when test="${!empty param.login}">
+    <c:when test="${!empty param.registration}">
         <c:choose>
             <c:when test="${(param.email) == null || (param.password) == null}">
-                <jsp:forward page="login.jsp">
+                <jsp:forward page="registration.jsp">
                     <jsp:param name="errorMsg" value="The username and/or the password is empty."/>
                 </jsp:forward>
             </c:when>
             <c:otherwise>  
                 <sql:query var="result" dataSource="${cookbook}">
-                    SELECT * FROM users WHERE email = '${param.email}' AND password = '${param.password}'
+                    SELECT * FROM users WHERE email = '${param.email}'
                 </sql:query>
                 <c:choose> 
                     <c:when test="${result.rowCount == 1}">
+                        <jsp:forward page="registration.jsp">
+                            <jsp:param name="errorMsg" value="The username and/or the password is empty."/>
+                        </jsp:forward>
+                    </c:when>
+                    <c:otherwise>
+                        <sql:update var="result" dataSource="${cookbook}">
+                            INSERT INTO users (name,email,password,authority)
+                            VALUES ('${param.name}', '${param.email}','${param.password}','user')
+                        </sql:update>
+                        <sql:query var="result" dataSource="${cookbook}">
+                            SELECT * FROM users WHERE email = '${param.email}'
+                        </sql:query>
                         <c:forEach var = "row" items = "${result.rows}">
                             <c:set var="id" value="${row.id}"/>
                             <c:set var="authority" value="${row.authority}"/>
@@ -31,11 +43,6 @@
                             <%session.setAttribute("authority",pageContext.getAttribute("authority"));%>
                         </c:forEach> 
                         <jsp:forward page="recipes.jsp"/>
-                    </c:when>
-                    <c:otherwise>
-                        <jsp:forward page="login.jsp">
-                            <jsp:param name="errorMsg" value="The username and/or the password is not valid."/>
-                        </jsp:forward>
                     </c:otherwise>
                 </c:choose>
             </c:otherwise>
