@@ -18,11 +18,12 @@
     </head>
 
     <body>
-        <%if(session.getAttribute("id")!= null){%>
+        <%= session.getAttribute("authority")%>
+        <%if(session.getAttribute("userid")!= null){%>
         <c:choose>
             <c:when test="${param.delete_recipe != null}">  
                 <sql:update var="result" dataSource="${cookbook}">
-                    DELETE FROM recipes WHERE id = <%= Integer.parseInt(request.getParameter("delete_id"))%>
+                    DELETE FROM recipes WHERE id = <%= Integer.parseInt(request.getParameter("recipe_id"))%>
                 </sql:update>
             </c:when>
         </c:choose>
@@ -40,7 +41,24 @@
 
         <c:forEach var="recipe" items="${result.rows}">
             <table>
-                <tr><td><h4><c:out value="${recipe.name}"/></h4></td></tr>
+                <tr><td><h4><c:out value="${recipe.name}"/></h4></td>
+                    
+                    <c:set var="writer_id" value="${recipe.writer_id}"/>
+                    
+                    <%if (session.getAttribute("authority").equals("admin")){%>
+                    <td><form action="recipes.jsp" method='POST'>
+                            <input type="hidden" name="recipe_id" value="${recipe.id}">
+                            <input type="submit" name="delete_recipe" value="Delete"></form>
+                    </td>
+                    
+                    <%}else{%>
+                    <% if (session.getAttribute("userid")== pageContext.getAttribute("writer_id")){%>
+                    <td><form action="recipes.jsp" method='POST'>
+                            <input type="hidden" name="recipe_id" value="${recipe.id}">
+                            <input type="submit" name="delete_recipe" value="Delete"></form>
+                    </td>
+                    <%}}%>
+                </tr>
                 <tr><td><c:out value="${recipe.ingredient}"/></td></tr>
                 <tr><td><c:out value="${recipe.preparation}"/></td></tr>
             </table> 

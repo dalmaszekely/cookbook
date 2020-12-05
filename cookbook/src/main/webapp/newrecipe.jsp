@@ -19,8 +19,8 @@
         <c:choose>
             <c:when test="${param.add_recipe != null}">  
                 <sql:update var="result" dataSource="${cookbook}">
-                    INSERT INTO recipes (name,preparation,ingredient)
-                    VALUES ('${param.name}', '${param.preparation}','${param.ingredient}')
+                    INSERT INTO recipes (name,preparation,ingredient,writer_id)
+                    VALUES ('${param.name}', '${param.preparation}','${param.ingredient}',${sessionScope.userid })
                 </sql:update>
                 <%String redirectURL = "recipes.jsp";
                 response.sendRedirect(redirectURL);%>    

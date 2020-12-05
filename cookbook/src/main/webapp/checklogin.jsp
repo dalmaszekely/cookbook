@@ -27,7 +27,7 @@
                         <c:forEach var = "row" items = "${result.rows}">
                             <c:set var="id" value="${row.id}"/>
                             <c:set var="authority" value="${row.authority}"/>
-                            <%session.setAttribute("id",pageContext.getAttribute("id"));%>
+                            <%session.setAttribute("userid",pageContext.getAttribute("id"));%>
                             <%session.setAttribute("authority",pageContext.getAttribute("authority"));%>
                         </c:forEach> 
                         <jsp:forward page="recipes.jsp"/>
