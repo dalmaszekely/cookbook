@@ -29,27 +29,30 @@
 
         <h1>Find and share everyday cooking inspiration!</h1>
         <h3>Search here for recipes</h3>
+
         <form method="POST" action="recipes.jsp">
             <input type="text" name="searched" value='${param.searched}'>
             <input type="submit" name="search_recipe" value="Search">
         </form>
-
-        <sql:query var="result" dataSource="${cookbook}">
+        <%if (session.getAttribute("authority").equals("admin")){%>
+        <br><form action="admin.jsp" method="POST"><input type="submit" name="admin page" value="Admin features"></form><br>
+            <%}%>
+            <sql:query var="result" dataSource="${cookbook}">
             SELECT * FROM recipes where upper(name)LIKE'%${fn:toUpperCase(param.searched)}%'
         </sql:query>
 
         <c:forEach var="recipe" items="${result.rows}">
             <table>
                 <tr><td><h4><c:out value="${recipe.name}"/></h4></td>
-                    
+
                     <c:set var="writer_id" value="${recipe.writer_id}"/>
-                    
+
                     <%if (session.getAttribute("authority").equals("admin")){%>
                     <td><form action="recipes.jsp" method='POST'>
                             <input type="hidden" name="recipe_id" value="${recipe.id}">
                             <input type="submit" name="delete_recipe" value="Delete"></form>
                     </td>
-                    
+
                     <%}else{%>
                     <% if (session.getAttribute("userid")== pageContext.getAttribute("writer_id")){%>
                     <td><form action="recipes.jsp" method='POST'>

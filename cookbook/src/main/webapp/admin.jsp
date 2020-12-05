@@ -113,6 +113,7 @@
                 </form>
             </c:when>
         </c:choose>
+    <form action="recipes.jsp" method="POST"><input type="submit" name="recipes page" value="Back to recipes"></form>
     </body>
     <%}else{ %>
     <jsp:forward page="recipes.jsp"/>
