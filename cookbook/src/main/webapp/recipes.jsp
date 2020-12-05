@@ -26,7 +26,7 @@
                 </sql:update>
             </c:when>
         </c:choose>
-
+                    <form action="logout.jsp" method="POST"><input type="submit" name="logout" value="Log out"></form>
         <h1>Find and share everyday cooking inspiration!</h1>
         <h3>Search here for recipes</h3>
 
