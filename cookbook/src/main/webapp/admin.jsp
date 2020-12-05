@@ -15,6 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>CookBook</title>
     </head>
+    <%if (session.getAttribute("authority").equals("admin")){%>
     <body>
         <table>
             <tr>
@@ -113,5 +114,8 @@
             </c:when>
         </c:choose>
     </body>
+    <%}else{ %>
+    <jsp:forward page="recipes.jsp"/>
+    <%}%>
 </html>
 
