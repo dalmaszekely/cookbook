@@ -14,10 +14,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Beadando3</title>
+        <title>CookBook</title>
     </head>
-    <body>
 
+    <body>
+        <%if(session.getAttribute("id")!= null){%>
         <c:choose>
             <c:when test="${param.delete_recipe != null}">  
                 <sql:update var="result" dataSource="${cookbook}">
@@ -50,4 +51,7 @@
             <input type="submit" name="new_recipe" value="&#10010; Recipe">
         </form>           
     </body>
+    <%}else{%>
+    <jsp:forward page="login.jsp"/>
+    <%}%>
 </html>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : admin
-    Created on : 2020.12.03., 17:18:45
-    Author     : Danubius
---%>
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
@@ -19,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Beadando3</title>
+        <title>CookBook</title>
     </head>
     <body>
         <table>
@@ -84,6 +78,7 @@
             </c:forEach>
         </table>
         <br><br>
+        
         <c:choose>
                 <c:when test="${param.new_user == null}">  
                     <form action="admin.jsp" method="POST">
