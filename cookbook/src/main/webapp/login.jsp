@@ -5,12 +5,12 @@
     Created on : 2020.12.04., 16:39:34
     Author     : Virág
 --%>
-<sql:setDataSource var="" 
-                       driver=""
-                       url=""
-                       user=""
-                       password=""
-                       scope="session"/>
+<sql:setDataSource var="cookbook" 
+                   driver="org.apache.derby.jdbc.ClientDriver"
+                   url="jdbc:derby://localhost:1527/semmi"
+                   user="semmi"
+                   password="semmi"
+                   scope="session"/>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
