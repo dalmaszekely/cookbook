@@ -46,6 +46,10 @@
             SELECT * FROM recipes where upper(name)LIKE'%${fn:toUpperCase(param.searched)}%'
         </sql:query>
 
+        <form action="newrecipe.jsp" method="POST">
+            <input type="submit" name="new_recipe" value="&#10010; Recipe" class="button">
+        </form>
+        
         <c:forEach var="recipe" items="${result.rows}">
             <table class="recipe">
                 <tr><td><h3 class="white"><c:out value="${recipe.name}"/></h3></td>
@@ -81,10 +85,6 @@
         </table>
         </c:forEach>
         <br><br>
-
-        <form action="newrecipe.jsp" method="POST">
-            <input type="submit" name="new_recipe" value="&#10010; Recipe" class="button">
-        </form>
     </div>
 </body>
 <%}else{%>
