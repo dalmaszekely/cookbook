@@ -10,12 +10,18 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<link rel="shortcut icon" type="image/png" href="img/favicon.png">
+<link rel="stylesheet" href="css/all.css">
+<link rel="stylesheet" href="css/newrecipe.css">
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>CookBook</title>
     </head>
     <body>
+        <div class="back-black">
         <c:choose>
             <c:when test="${param.add_recipe != null}">  
                 <sql:update var="result" dataSource="${cookbook}">
@@ -26,26 +32,27 @@
                 response.sendRedirect(redirectURL);%>    
             </c:when>
         </c:choose>
-        <h1>Share your new recipe!</h1>
+        <h1 class="white op">Share your new recipe!</h1>
         <c:choose>
             <c:when test="${param.new_recipe != null}">
                 <form action="newrecipe.jsp" id="recipe" method="POST">
                     <table>
                         <tr>
-                            <td>Recipe name</td><tr><td><input type="text" size="53" name="name" required></td></tr><br>
+                            <td><span class="white">Recipe name</span></td><tr><td><input type="text" size="53" name="name" required class="textbox_rec"></td></tr><br>
                         </tr>
                         <tr>
-                            <td>Ingredients</td><tr><td><textarea name="ingredient" rows="4" cols="50" form="recipe"></textarea></td></tr><br>
+                            <td><span class="white">Ingredients</span></td><tr><td><textarea name="ingredient" rows="4" cols="50" form="recipe" class="textbox_rec"></textarea></td></tr><br>
                         </tr>
                         <tr>
-                            <td>Preparation</td><tr><td><textarea name="preparation" rows="10" cols="50" form="recipe"></textarea></td></tr><br>
+                            <td><span class="white">Preparation</span></td><tr><td><textarea name="preparation" rows="10" cols="50" form="recipe" class="textbox_rec"></textarea></td></tr><br>
                         </tr>
                         <tr>
-                            <td><input type="submit" name="add_recipe" value="Add recipe"></td>
+                            <td><input type="submit" name="add_recipe" value="Add recipe" class="button"></td>
                         </tr>
                     </table>
                 </form>
             </c:when>
         </c:choose>
+    </div>
     </body>
 </html>
