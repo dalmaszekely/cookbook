@@ -99,7 +99,7 @@
     <c:choose>
         <c:when test="${param.new_user == null}">
             <form action="admin.jsp" method="POST">
-                <input type="submit" name="new_user" value="New user">
+                <input type="submit" name="new_user" value="New user" class="button">
             </form>
         </c:when>
     </c:choose>

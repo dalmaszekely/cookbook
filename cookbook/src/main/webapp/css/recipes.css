@@ -33,3 +33,7 @@ body {
 .recipe {
     width: 600px;
 }
+
+.space {
+    padding-bottom: 10px;
+}
