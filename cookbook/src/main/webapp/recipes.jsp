@@ -71,7 +71,7 @@
                         <%}}%>
                     </tr>
                     <tr><td class="white space"><c:out value="${recipe.ingredient}"/></td></tr>
-                    <tr><td class="white"><c:out value="${recipe.preparation}"/></td></tr>
+                    <tr><td class="white space"><c:out value="${recipe.preparation}"/></td></tr>
                 </table>
                 <hr>
             </c:forEach>
